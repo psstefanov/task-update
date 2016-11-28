@@ -17,5 +17,6 @@ test:
 
 deployment:  
   prod:
+    branch: master
     commands:
       - ansible-playbook start_stop/service_start.yml -i deployment/vars --vault-password-file ~/.vault_password.txt
