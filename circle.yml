@@ -5,11 +5,17 @@ machine:
 dependencies:
   pre:
     - pip install ansible
-    
+    - ansible-playbook start_stop/service_start.yml -i deployment/vars --vault-password-file ~/.vault_password.txt
+
 test:
   override:
     - <ansible-command-to-run>
 
-#1 Service stop
+
 #2 ssh bar@foo "docker ps -a | grep ecs-dfsp1-1 | awk '{print $2}' | xargs docker rmi -f && docker ps -a | grep ecs-dfsp1-1 | awk '{print $1}' | xargs docker rm"
-#3 Service start
+
+
+deployment:  
+  prod:
+    commands:
+      - ansible-playbook start_stop/service_start.yml -i deployment/vars --vault-password-file ~/.vault_password.txt
